@@ -15,12 +15,11 @@ public final class WebServer {
 
     public String handledRequests = "";
     public int port;
-    public String webserverRootDirectory; //this contains index/index.html
+    public String webserverRootDirectory; //this contains index.html
     public String webserverMaintenanceDirectory; //this contains maintenance.html
     public String webserverStatus;
 
     public WebServer(int port, String webserverRootDirectory, String webserverMaintenanceDirectory, String webserverStatus) {
-        //validate
         if (webserverRootDirectory == null) {
             throw new NullPointerException();
         }
@@ -127,7 +126,7 @@ public final class WebServer {
             handleClient(clientSocket);
             clientSocket.close();
         } catch (IOException e) {
-            //Port is already busy -- either because the system took it before me, or because a client has taken it and another clint wants to connect to it while the request of the first client is being processed -- basically two clients connecting at the same time
+            //Port is already busy
             System.err.println("Could not listen on port:" + port);
         }
 

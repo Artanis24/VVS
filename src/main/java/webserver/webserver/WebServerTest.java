@@ -159,8 +159,8 @@ public class WebServerTest {
 
     @Test
     public void handleClientWithRunningServerAndRequestForIndexPage() throws IOException {
-        //Need to connect to localhost:8080
-        //You will request the index
+        //connect to localhost:8080
+        //request the index
         WebServer webserver = new WebServer(WEBSERVER_PORT + 1, WEBSERVER_ROOT_DIRECTORY, WEBSERVER_MAINTENANCE_DIRECTORY, "Maintenance");
         try (ServerSocket serverSocket = new ServerSocket(CLIENT_PORT + 2)) {
             Socket clientSocket;
@@ -187,7 +187,7 @@ public class WebServerTest {
 
     @Test
     public void handleClientWithRunningServerAndRequestForUnknownPage() throws IOException {
-        //Need to connect to localhost:8080
+        //connect to localhost:8080
         WebServer webserver = buildDefaultWebServer();
         webserver.handledRequests = "";
         ServerSocket serverSocket = new ServerSocket(CLIENT_PORT);
@@ -215,8 +215,8 @@ public class WebServerTest {
 
     @Test
     public void handleClientWithMaintenanceServerAndRequestForIndexPage() throws IOException {
-        //Need to connect to localhost:8080
-        //You will request the index
+        //connect to localhost:8080
+        //request the index
 
         WebServer webserver = new WebServer(WEBSERVER_PORT + 1, WEBSERVER_ROOT_DIRECTORY, WEBSERVER_MAINTENANCE_DIRECTORY, "Maintenance");
         webserver.handledRequests = "";
@@ -244,8 +244,8 @@ public class WebServerTest {
 
     @Test
     public void handleClientWithStoppedServerAndRequestForIndexPage() throws IOException {
-        //Need to connect to localhost:8080
-        //You will request the index
+        //connect to localhost:8080
+        //request the index
         WebServer webserver = new WebServer(WEBSERVER_PORT + 1, WEBSERVER_ROOT_DIRECTORY, WEBSERVER_MAINTENANCE_DIRECTORY, "Stopped");
         webserver.handledRequests = "";
         ServerSocket serverSocket = new ServerSocket(CLIENT_PORT);
@@ -273,23 +273,22 @@ public class WebServerTest {
 
     @Test
     public void handleClientWithRunningServerAndRequestForIndexPageClientDisconnectingIOExceptionThrown() throws IOException {
-        //Need to connect to localhost:8080
-        //You will request the index
+        //connect to localhost:8080
+        //request the index
 
         WebServer webserver = buildDefaultWebServer();
         ServerSocket serverSocket = new ServerSocket(CLIENT_PORT);
 
         Socket clientSocket = serverSocket.accept();
         clientSocket.close();
-        webserver.handleClient(clientSocket); //html
-        //Want to get the IOException in handleClient
+        webserver.handleClient(clientSocket); //htm
     }
 
 
     @Test
     public void handleOneRequestWithRunningServerHandlingKnownPageRequestNoExceptionOccuring() {
-        //Need to connect to localhost:8080
-        //You will request the index
+        //connect to localhost:8080
+        //request the index
 
         WebServer webserver = buildDefaultWebServer();
         webserver.handledRequests = "";
@@ -310,9 +309,7 @@ public class WebServerTest {
     @Test
     public void handleOneRequestWithRunningServerIOExceptionWhenCreatingAServerSocket() {
 
-        //netstat -ab and choose the some port for which it says that it's established
-        //Put the found established port in the constructor
-        //You don;t have to access anything -- just wait -- if the port is still established at the time of execution, you will see the message "Could not listen on port: xxxxxx"
+        //if the port is still established at the time of execution, you will see the message "Could not listen on port: xxxxxx"
         WebServer webserver = new WebServer(CLIENT_PORT, WEBSERVER_ROOT_DIRECTORY, WEBSERVER_MAINTENANCE_DIRECTORY, WEBSERVER_STATUS);
         WebServer webserver2 = new WebServer(CLIENT_PORT, WEBSERVER_ROOT_DIRECTORY, WEBSERVER_MAINTENANCE_DIRECTORY, WEBSERVER_STATUS);
         webserver.handleOneRequest(); //html
@@ -325,7 +322,6 @@ public class WebServerTest {
     @Test
     public void handleOneRequestWithRunningServerIOExceptionWhenTwoClientsConnectAtSameServer() throws BrokenBarrierException, InterruptedException {
 
-        //You don;t have to run anything
         WebServer webserver = buildDefaultWebServer();
         final CyclicBarrier gate = new CyclicBarrier(2 + 1);
 
