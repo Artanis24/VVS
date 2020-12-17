@@ -126,7 +126,6 @@ public final class WebServer {
             handleClient(clientSocket);
             clientSocket.close();
         } catch (IOException e) {
-            //Port is already busy
             System.err.println("Could not listen on port:" + port);
         }
 

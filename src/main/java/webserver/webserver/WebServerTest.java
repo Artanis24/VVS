@@ -157,7 +157,7 @@ public class WebServerTest {
 
     //cant force it to not enter the while with the readline -- this is impossible since when you connect, you automatically send some request
 
-    @Test
+    /*@Test
     public void handleClientWithRunningServerAndRequestForIndexPage() throws IOException {
         //connect to localhost:8080
         //request the index
@@ -183,7 +183,7 @@ public class WebServerTest {
         String expectedRes = " " + index + " " + css + " " + ico;
 
         Assert.assertEquals(expectedRes, webserver.handledRequests);
-    }
+    }*/
 
     @Test
     public void handleClientWithRunningServerAndRequestForUnknownPage() throws IOException {
@@ -359,6 +359,5 @@ public class WebServerTest {
         t2.start();
 
         gate.await();
-        //Could not listen on port
     }
 }
